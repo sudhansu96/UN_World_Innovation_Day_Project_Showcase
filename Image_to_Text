@@ -1,0 +1,83 @@
+// Here is the code we used to convert the image into a text file
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+  clrscr();
+  FILE *fptr;
+  FILE *txt;
+  int c;
+
+  fptr1=fopen("angular view.bmp","r");
+  fptr2=fopen("internal_structure_view.bmp","r");
+  txt1=fopen("test1.txt","w");
+  txt2=fopen("test2.txt","w");
+
+  if(fptr1==NULL)
+  {
+    printf("NOTHING In FILE");
+    fclose(fptr1);
+  }
+  else
+  {
+    printf("success");
+
+    do
+    {
+      c=fgetc(fptr1);
+      for(int i=0;i<=7;i++)
+      {
+        if(c&(1<<(7-i)))
+        {
+          fputc('1',txt1);
+        }
+        else
+        {
+          fputc('0',txt1);
+        }
+      }
+      // fprintf(txt1,"\t");
+    }while(c!=EOF);
+
+  }
+
+  fclose(fptr1);
+  fclose(txt1);
+
+  printf("writing over");
+  
+  if(fptr2==NULL)
+  {
+    printf("NOTHING In FILE");
+    fclose(fptr2);
+  }
+  else
+  {
+    printf("success");
+
+    do
+    {
+      c=fgetc(fptr2);
+      for(int i=0;i<=7;i++)
+      {
+        if(c&(1<<(7-i)))
+        {
+          fputc('1',txt2);
+        }
+        else
+        {
+          fputc('0',txt2);
+        }
+      }
+      // fprintf(txt2,"\t");
+    }while(c!=EOF);
+
+  }
+
+  fclose(fptr2);
+  fclose(txt2);
+  printf("writing over");
+  getch();
+}
+}
